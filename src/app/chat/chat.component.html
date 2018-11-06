@@ -1,6 +1,64 @@
+  <!-- Header section containing logo -->
+  <header class="mdl-layout__header mdl-color-text--white mdl-color--indigo-pink-700">
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
+      <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+        <h3><i class="material-icons">message</i>puffChat</h3>
+      </div>
+
+
+      <div id="user-container">
+        <div id="user-pic"></div>
+        <div id="user-name"></div>
+        <button id="sign-out" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
+          Sign-out
+        </button>
+        <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
+          <i class="material-icons">account_circle</i>Sign-in with Google
+        </button>
+      </div>
+
+
+    </div>
+  </header>
+
+  <main class="mdl-layout__content mdl-color--grey-100">
+    <div id="messages-card-container" class="mdl-cell mdl-cell--12-col mdl-grid">
+
+      <!-- Messages container -->
+      <div id="messages-card" class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--6-col-desktop">
+        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+          <div id="messages">
+            <!-- Ngfor loop will be located here -->
+            <span *ngFor="let msg of messages" id="message-filler"><p>{{msg}}</p></span>
+          </div>
+
+          <form id="message-form" action="#">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="message"  #msgInput name="" value="">
+
+              <label class="mdl-textfield__label" for="message">Message...</label>
+            </div>
+
+            <!-- Here comes to button -->
+            <a (click)="sendMsg(msgInput.value)" id="submit" disabled class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+              Send
+            </a>
+          </form>
+
+          <form id="image-form" action="#">
+            <input id="mediaCapture" type="file" accept="image/*" capture="camera">
+            <a id="submitImage" title="Add an image" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--amber-400 mdl-color-text--white">
+              <i class="material-icons">image</i>
+            </a>
+          </form>
+        </div>
+      </div>
+
+      <div id="must-signin-snackbar" class="mdl-js-snackbar mdl-snackbar">
+        <div class="mdl-snackbar__text"></div>
+        <button class="mdl-snackbar__action" type="button"></button>
+      </div>
+
+    </div>
+  </main>
 <div>
-  <input type="text" #msgInput name="" value="">
-  <button (click)="sendMsg(msgInput.value)">Send</button>
-  <br>
-  <p>{{msg}}</p>
-</div>

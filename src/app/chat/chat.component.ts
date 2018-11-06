@@ -8,6 +8,7 @@ import { ChatService } from '../chat.service';
   providers : [ChatService]
 })
 export class ChatComponent implements OnInit {
+  messages=["message1","message2","message3"];
   msg : string;
 
   constructor(private chatService : ChatService) { }
