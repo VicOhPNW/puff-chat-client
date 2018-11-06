@@ -49,6 +49,10 @@ export class ChatComponent implements OnInit {
     this.authService.updateDisplayName(newName);
   }
 
+  createAccount(newEmail, newPW) {
+    this.authService.createAccount(newEmail, newPW);
+  }
+
   ngOnInit() {
     this.chatService
     .getMessage()
