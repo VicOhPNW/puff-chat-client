@@ -1,18 +1,20 @@
-<div>
-  <li *ngIf="user">
-    <a>{{userName}}</a>
-    <a (click)="logout()">Log out</a>
-  </li>
-  <li *ngIf="!user">
-
+<nav class="navbar navbar-default">
+  <div>
+    <li *ngIf="user">
+      <p>Display Name: {{userName}}</p>
+      <label for="newDisplayName">New Display Name: </label>
+      <input #newDisplayName type="text" required>
+      <a (click)="updateDisplayName(newDisplayName.value)">Update Name</a>
+      <br>
+      <a (click)="logout()">Log out</a>
+    </li>
+    <li *ngIf="!user">
       <label for="email">Email: </label>
       <input #email type="text" required>
       <label for="password">Password: </label>
       <input #password type="password" required>
       <button (click)="login(email.value, password.value)">Log in</button>
-
-  </li>
-</div>
-
-<!-- 
-<app-chat></app-chat> -->
+    </li>
+  </div>
+</nav>
+<app-chat></app-chat>
