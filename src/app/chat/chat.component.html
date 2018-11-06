@@ -39,7 +39,7 @@
     </div>
   </header>
 
-  <main *ngIf="currentUser" class="mdl-layout__content mdl-color--grey-100">
+  <main *ngIf="user" class="mdl-layout__content mdl-color--grey-100">
     <div id="messages-card-container" class="mdl-cell mdl-cell--12-col mdl-grid">
 
       <!-- Messages container -->
@@ -50,10 +50,10 @@
             <div 
             *ngFor="let message of messages" id="message-filler">
 
-            <span [class.float-right]="message.username != currentUser.userName">({{message.username}})</span><br />
+            <span [class.float-right]="message.username != userName">({{message.username}})</span><br />
 
-            <div [class.me]="message.username == currentUser.userName"
-              [class.mdl-cell--3-offset]="message.username == currentUser.userName" class="chat-bubble">
+            <div [class.me]="message.username == userName"
+              [class.mdl-cell--3-offset]="message.username == userName" class="chat-bubble">
               <p>{{message.msg}}</p>
             </div><br />
 
