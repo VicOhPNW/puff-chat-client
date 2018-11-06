@@ -50,7 +50,7 @@
             <div 
             *ngFor="let message of messages" id="message-filler">
 
-            <span [class.float-right]="message.username != userName">({{message.username}})</span><br />
+            <span [class.float-right]="message.username != userName">({{message.username}}, {{ message.timestamp |date:'medium' }})</span><br />
 
             <div [class.me]="message.username == userName"
               [class.mdl-cell--3-offset]="message.username == userName" class="chat-bubble">

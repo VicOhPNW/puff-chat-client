@@ -11,7 +11,7 @@ import * as firebase from "firebase";
   providers : [ChatService, AuthenticationService]
 })
 export class ChatComponent implements OnInit {
-  messages=[{username: "Ethan Lee", msg: "Hello, welcome to the chatroom"}];
+  messages=[{username: "Ethan Lee", msg: "Hello, welcome to the chatroom", timestamp: Date.now()}];
   msg : string;
   // currentUser: User;
   user;
@@ -52,11 +52,11 @@ export class ChatComponent implements OnInit {
 
   ngOnInit() {
     this.chatService.selectChatroom(this.chatroomIndex);
-    
+
     this.chatService
     .getMessage()
     .subscribe(msg => {
-      this.messages.push({username: msg.username, msg: msg.msg});
+      this.messages.push({username: msg.username, msg: msg.msg, timestamp: msg.timestamp });
     });
     
     this.chatService.requestPreviousMessages();
