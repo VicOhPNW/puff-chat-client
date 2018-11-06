@@ -7,13 +7,13 @@ export class ChatService {
 
     constructor(private socket: Socket) { }
 
-    sendMessage(msg: string){
-      this.socket.emit("message", msg);
+    sendMessage(userName: string, msg: string){
+      this.socket.emit("message", {username: userName, msg: msg});
     }
     
     getMessage() {
       return this.socket
         .fromEvent<any>("message")
-        .map( data => data.msg );
+        .map( data => data);
     }
 }
