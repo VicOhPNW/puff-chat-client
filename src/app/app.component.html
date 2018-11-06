@@ -1,1 +1,18 @@
-<app-chat></app-chat>
+<div>
+  <li *ngIf="user">
+    <a>{{userName}}</a>
+    <a (click)="logout()">Log out</a>
+  </li>
+  <li *ngIf="!user">
+
+      <label for="email">Email: </label>
+      <input #email type="text" required>
+      <label for="password">Password: </label>
+      <input #password type="password" required>
+      <button (click)="login(email.value, password.value)">Log in</button>
+
+  </li>
+</div>
+
+<!-- 
+<app-chat></app-chat> -->
