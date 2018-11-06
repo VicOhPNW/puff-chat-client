@@ -17,6 +17,9 @@
  html, body {
     font-family: 'Roboto', 'Helvetica', sans-serif;
   }
+  .mdl-layout__header {
+      display: flex;
+  }
   main, #messages-card {
     width: 100%;
     height: 100%;
@@ -188,7 +191,7 @@
     }
     #user-container {
       top: 72px;
-      background-color: #e388d9;
+      background-color: rgb(233,30,99);
       height: 38px;
       padding-top: 3px;
       padding-right: 2px;
@@ -211,3 +214,30 @@
     margin-right: 5px;
   }
   
+  .chat-bubble{
+    float: right;
+    min-width: 30px;
+    width: auto;
+    padding: 0;
+    background-color: #df43cc;
+    border-radius: 10px;
+    margin: 10px;
+    color: white;
+    display: inline;
+  }
+
+    .chat-bubble p {
+        margin: 3px;
+        padding: 3px;
+        text-align: center;
+    }
+
+  .me { 
+    float: left;
+    background-color: whitesmoke;
+    color: #0c0c0c;
+  }
+
+  .float-right {
+      float: right;
+  }
