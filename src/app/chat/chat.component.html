@@ -34,7 +34,7 @@
         <div class="mdl-card__supporting-text mdl-color-text--grey-600">
           <div id="messages">
             <!-- Ngfor loop will be located here -->
-            <span *ngFor="let msg of messages" id="message-filler"><p>{{msg}}</p></span>
+            <span *ngFor="let message of messages" id="message-filler"><p>{{message.msg}} ({{message.username}})</p></span>
           </div>
 
           <form id="message-form" action="#">
