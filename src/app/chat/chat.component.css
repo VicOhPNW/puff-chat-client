@@ -59,7 +59,7 @@
     padding-bottom: 0;
   }
   #messages {
-    padding-top: 5%;
+    padding-top: 3%;
     overflow-y: auto;
     margin-bottom: 10px;
     height: calc(100% - 80px);
