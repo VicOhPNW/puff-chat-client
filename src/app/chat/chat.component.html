@@ -7,19 +7,31 @@
 
 
       <div id="user-container">
-        <div *ngIf="currentUser">
-          <div id="user-name">Hi, {{currentUser.userName}}</div>
+        <div *ngIf="user">
+          <!-- <div id="user-name">Hi, {{currentUser.userName}}</div>
           <button id="sign-out" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
             Sign-out
-          </button>
+          </button> -->
+          <div id="user-name">
+            <p>Display Name: {{userName}}</p>
+          </div>
+          <label for="newDisplayName">New Display Name: </label>
+          <input #newDisplayName type="text" required>
+          <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white" (click)="updateDisplayName(newDisplayName.value)">Update Name</a>
+          <a (click)="logout()">Log out</a>
         </div>
         <!-- <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
           <i class="material-icons">account_circle</i>
         </button> -->
-        <div *ngIf="!currentUser">
-          <label>Enter Username</label>
+        <div *ngIf="!user">
+          <!-- <label>Enter Username</label>
           <input type="text" #userNameInput>
-          <button type="click" (click)="createUser(userNameInput.value)">Submit</button>
+          <button type="click" (click)="createUser(userNameInput.value)">Submit</button> -->
+          <label for="email">Email: </label>
+          <input #email type="text" required>
+          <label for="password">Password: </label>
+          <input #password type="password" required>
+          <button (click)="login(email.value, password.value)">Log in</button>
         </div>
       </div>
 
