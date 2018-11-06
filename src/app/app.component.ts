@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from './authentication.service';
-import * as firebase from "firebase";
+// import * as firebase from "firebase";
 
 @Component({
   selector: 'app-root',
@@ -11,38 +11,38 @@ import * as firebase from "firebase";
 export class AppComponent {
   title = 'puff-chat';
 
-  user;
-  userName: string;
+  // user;
+  // userName: string;
 
-  constructor(public authService: AuthenticationService) {
-    this.authService.user.subscribe(user => {
-      console.log(user);
-      if (user == null) {
+  // constructor(public authService: AuthenticationService) {
+  //   this.authService.user.subscribe(user => {
+  //     console.log(user);
+  //     if (user == null) {
         
-      } else {
-        this.userName = user.displayName;
-      }
-    });
-  }
+  //     } else {
+  //       this.userName = user.displayName;
+  //     }
+  //   });
+  // }
 
-  ngDoCheck() {
-    this.user = firebase.auth().currentUser;
-    if (this.user == null) {
+  // ngDoCheck() {
+  //   this.user = firebase.auth().currentUser;
+  //   if (this.user == null) {
         
-    } else {
-      this.userName = this.user.displayName;
-    }
-  }
+  //   } else {
+  //     this.userName = this.user.displayName;
+  //   }
+  // }
 
-  login(email, password) {
-    this.authService.login(email, password);
-  }
+  // login(email, password) {
+  //   this.authService.login(email, password);
+  // }
 
-  logout() {
-    this.authService.logout();
-  }
+  // logout() {
+  //   this.authService.logout();
+  // }
 
-  updateDisplayName(newName) {
-    this.authService.updateDisplayName(newName);
-  }
+  // updateDisplayName(newName) {
+  //   this.authService.updateDisplayName(newName);
+  // }
 }
