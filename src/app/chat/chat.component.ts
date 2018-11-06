@@ -9,7 +9,7 @@ import { User } from '../models/user.model';
   providers : [ChatService]
 })
 export class ChatComponent implements OnInit {
-  messages=[{username: "Chan Lee", msg: "hello"}];
+  messages=[{username: "Ethan Lee", msg: "Hello, welcome to the chatroom"}];
   msg : string;
   currentUser: User;
 
@@ -20,12 +20,13 @@ export class ChatComponent implements OnInit {
     .getMessage()
     .subscribe(msg => {
       this.msg = `${msg.username}: ${msg.msg}`;
+      this.messages.push({username: msg.username, msg: msg.msg});
     });
   }
 
   sendMsg(msg){
     this.chatService.sendMessage(this.currentUser.userName, msg);
-    this.messages.push({username: this.currentUser.userName, msg: msg})
+    // this.messages.push({username: this.currentUser.userName, msg: msg})
   }
 
   createUser(name: string) {
