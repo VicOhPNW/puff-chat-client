@@ -9,6 +9,7 @@ import { User } from '../models/user.model';
   providers : [ChatService]
 })
 export class ChatComponent implements OnInit {
+  messages=[{username: "Chan Lee", msg: "hello"}];
   msg : string;
   currentUser: User;
 
@@ -24,6 +25,7 @@ export class ChatComponent implements OnInit {
 
   sendMsg(msg){
     this.chatService.sendMessage(this.currentUser.userName, msg);
+    this.messages.push({username: this.currentUser.userName, msg: msg})
   }
 
   createUser(name: string) {
