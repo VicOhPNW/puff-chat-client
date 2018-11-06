@@ -1,54 +1,62 @@
-  <!-- Header section containing logo -->
-  <header class="mdl-layout__header mdl-color-text--white mdl-color--indigo-pink-700">
-    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
-      <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--12-col-desktop">
-        <h3><i class="material-icons">message</i>puffChat</h3>
-      </div>
+<!-- Header section containing logo -->
+<header class="mdl-layout__header mdl-color-text--white mdl-color--indigo-pink-700">
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
+    <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--12-col-desktop">
+      <h3><i class="material-icons">message</i>puffChat</h3>
+    </div>
 
 
-      <div id="user-container">
-        <div *ngIf="user">
-          <!-- <div id="user-name">Hi, {{currentUser.userName}}</div>
+    <div id="user-container">
+      <div *ngIf="user">
+        <!-- <div id="user-name">Hi, {{currentUser.userName}}</div>
           <button id="sign-out" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
             Sign-out
           </button> -->
-          <div id="user-name">
-            <p>Display Name: {{userName}}</p>
-          </div>
-          <label for="newDisplayName">New Display Name: </label>
-          <input #newDisplayName type="text" required>
-          <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white" (click)="updateDisplayName(newDisplayName.value)">Update Name</a>
-          <a (click)="logout()">Log out</a>
+        <div id="user-name">
+          <p>Display Name: {{userName}}</p>
         </div>
-        <!-- <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
+        <label for="newDisplayName">New Display Name: </label>
+        <input #newDisplayName type="text" required>
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white" (click)="updateDisplayName(newDisplayName.value)">Update
+          Name</a>
+        <a (click)="logout()">Log out</a>
+      </div>
+      <!-- <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
           <i class="material-icons">account_circle</i>
         </button> -->
-        <div *ngIf="!user">
-          <!-- <label>Enter Username</label>
+      <div *ngIf="!user">
+        <!-- <label>Enter Username</label>
           <input type="text" #userNameInput>
           <button type="click" (click)="createUser(userNameInput.value)">Submit</button> -->
+        <div class="sign-in-container">
           <label for="email">Email: </label>
           <input #email type="text" required>
           <label for="password">Password: </label>
           <input #password type="password" required>
           <button (click)="login(email.value, password.value)">Log in</button>
         </div>
+        <div class="log-in-container">
+          <label for="newEmail">Email: </label>
+          <input #newEmail type="text" required>
+          <label for="newPW">Password: </label>
+          <input #newPW type="password" required>
+          <button (click)="createAccount(newEmail.value, newPW.value)">Sign Up</button>
+        </div>
       </div>
 
-
     </div>
-  </header>
+  </div>
+</header>
 
-  <main *ngIf="user" class="mdl-layout__content mdl-color--grey-100">
-    <div id="messages-card-container" class="mdl-cell mdl-cell--12-col mdl-grid">
+<main *ngIf="user" class="mdl-layout__content mdl-color--grey-100">
+  <div id="messages-card-container" class="mdl-cell mdl-cell--12-col mdl-grid">
 
-      <!-- Messages container -->
-      <div id="messages-card" class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--6-col-desktop">
-        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-          <div id="messages">
-            <!-- Ngfor loop will be located here -->
-            <div 
-            *ngFor="let message of messages" id="message-filler">
+    <!-- Messages container -->
+    <div id="messages-card" class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--6-col-desktop">
+      <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+        <div id="messages">
+          <!-- Ngfor loop will be located here -->
+          <div *ngFor="let message of messages" id="message-filler">
 
             <span [class.float-right]="message.username != userName">({{message.username}})</span><br />
 
@@ -58,35 +66,34 @@
             </div><br />
 
 
-              
-            </div>
+
+          </div>
+        </div>
+
+        <form id="message-form" action="#">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="message" #msgInput name="" value="" placeholder="Message...">
           </div>
 
-          <form id="message-form" action="#">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="message"  #msgInput name="" value="" placeholder="Message...">
-            </div>
+          <!-- Here comes to button -->
+          <button type="click" (click)="sendMsg(msgInput.value); msgInput.value='';" class="mdl-button mdl-js-button mdl-button--raised  mdl-button--colored mdl-js-ripple-effect">
+            Send
+          </button>
+        </form>
 
-            <!-- Here comes to button -->
-            <button type="click" (click)="sendMsg(msgInput.value); msgInput.value='';" class="mdl-button mdl-js-button mdl-button--raised  mdl-button--colored mdl-js-ripple-effect">
-              Send
-            </button>
-          </form>
-
-          <form id="image-form" action="#">
-            <input id="mediaCapture" type="file" accept="image/*" capture="camera">
-            <button type="click" id="submitImage" title="Add an image" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--amber-400 mdl-color-text--white">
-              <i class="material-icons">image</i>
-            </button>
-          </form>
-        </div>
+        <form id="image-form" action="#">
+          <input id="mediaCapture" type="file" accept="image/*" capture="camera">
+          <button type="click" id="submitImage" title="Add an image" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--amber-400 mdl-color-text--white">
+            <i class="material-icons">image</i>
+          </button>
+        </form>
       </div>
-
-      <div id="must-signin-snackbar" class="mdl-js-snackbar mdl-snackbar">
-        <div class="mdl-snackbar__text"></div>
-        <button class="mdl-snackbar__action" type="button"></button>
-      </div>
-
     </div>
-  </main>
-<div>
+
+    <div id="must-signin-snackbar" class="mdl-js-snackbar mdl-snackbar">
+      <div class="mdl-snackbar__text"></div>
+      <button class="mdl-snackbar__action" type="button"></button>
+    </div>
+
+  </div>
+</main>

@@ -36,4 +36,8 @@ export class AuthenticationService {
       console.log("Error updating display name");
     });
   }
+
+  createAccount(newEmail, newPW) {
+    this.afAuth.auth.createUserWithEmailAndPassword(newEmail, newPW);
+  }
 }
