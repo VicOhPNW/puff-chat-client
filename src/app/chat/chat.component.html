@@ -1,4 +1,10 @@
-<div>
+<div *ngIf="!currentUser">
+  <label>Enter Username</label>
+  <input type="text" #userNameInput>
+  <button type="click" (click)="createUser(userNameInput.value)">Submit</button>
+</div>
+
+<div *ngIf="currentUser">
   <input type="text" #msgInput name="" value="">
   <button (click)="sendMsg(msgInput.value)">Send</button>
   <br>
