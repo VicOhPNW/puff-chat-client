@@ -7,19 +7,31 @@
 
 
       <div id="user-container">
-        <div *ngIf="currentUser">
-          <div id="user-name">Hi, {{currentUser.userName}}</div>
+        <div *ngIf="user">
+          <!-- <div id="user-name">Hi, {{currentUser.userName}}</div>
           <button id="sign-out" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
             Sign-out
-          </button>
+          </button> -->
+          <div id="user-name">
+            <p>Display Name: {{userName}}</p>
+          </div>
+          <label for="newDisplayName">New Display Name: </label>
+          <input #newDisplayName type="text" required>
+          <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white" (click)="updateDisplayName(newDisplayName.value)">Update Name</a>
+          <a (click)="logout()">Log out</a>
         </div>
         <!-- <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
           <i class="material-icons">account_circle</i>
         </button> -->
-        <div *ngIf="!currentUser">
-          <label>Enter Username</label>
+        <div *ngIf="!user">
+          <!-- <label>Enter Username</label>
           <input type="text" #userNameInput>
-          <button type="click" (click)="createUser(userNameInput.value)">Submit</button>
+          <button type="click" (click)="createUser(userNameInput.value)">Submit</button> -->
+          <label for="email">Email: </label>
+          <input #email type="text" required>
+          <label for="password">Password: </label>
+          <input #password type="password" required>
+          <button (click)="login(email.value, password.value)">Log in</button>
         </div>
       </div>
 
@@ -27,7 +39,7 @@
     </div>
   </header>
 
-  <main *ngIf="currentUser" class="mdl-layout__content mdl-color--grey-100">
+  <main *ngIf="user" class="mdl-layout__content mdl-color--grey-100">
     <div id="messages-card-container" class="mdl-cell mdl-cell--12-col mdl-grid">
 
       <!-- Messages container -->
@@ -38,10 +50,10 @@
             <div 
             *ngFor="let message of messages" id="message-filler">
 
-            <span [class.float-right]="message.username != currentUser.userName">({{message.username}})</span><br />
+            <span [class.float-right]="message.username != userName">({{message.username}})</span><br />
 
-            <div [class.me]="message.username == currentUser.userName"
-              [class.mdl-cell--3-offset]="message.username == currentUser.userName" class="chat-bubble">
+            <div [class.me]="message.username == userName"
+              [class.mdl-cell--3-offset]="message.username == userName" class="chat-bubble">
               <p>{{message.msg}}</p>
             </div><br />
 
