@@ -16,4 +16,13 @@ export class ChatService {
         .fromEvent<any>("message")
         .map( data => data);
     }
+
+    requestPreviousMessages() {
+      this.socket.emit("previousMessages", "request");
+    }
+
+    getPreviousMessages() {
+      return this.socket
+        .fromEvent<any>("previousMessages");
+    }
 }

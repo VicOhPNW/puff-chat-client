@@ -56,6 +56,16 @@ export class ChatComponent implements OnInit {
       this.msg = `${msg.username}: ${msg.msg}`;
       this.messages.push({username: msg.username, msg: msg.msg});
     });
+    
+    this.chatService.requestPreviousMessages();
+
+    this.chatService
+    .getPreviousMessages()
+    .subscribe(previousMessages => {
+      Object.keys(previousMessages).forEach(key => {
+        this.messages.push(previousMessages[key]);
+      });
+    });
   }
 
   sendMsg(msg){
