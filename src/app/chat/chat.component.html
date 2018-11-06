@@ -15,13 +15,18 @@
         <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
           <i class="material-icons">account_circle</i>Sign-in with Google
         </button>
+        <div *ngIf="!currentUser">
+            <label>Enter Username</label>
+            <input type="text" #userNameInput>
+            <button type="click" (click)="createUser(userNameInput.value)">Submit</button>
+          </div>
       </div>
 
 
     </div>
   </header>
 
-  <main class="mdl-layout__content mdl-color--grey-100">
+  <main *ngIf="currentUser" class="mdl-layout__content mdl-color--grey-100">
     <div id="messages-card-container" class="mdl-cell mdl-cell--12-col mdl-grid">
 
       <!-- Messages container -->
