@@ -7,26 +7,27 @@
 
 
       <div id="user-container">
-        <div id="user-pic"></div>
-        <div id="user-name"></div>
-        <button id="sign-out" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
-          Sign-out
-        </button>
-        <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
-          <i class="material-icons">account_circle</i>Sign-in with Google
-        </button>
+        <div *ngIf="currentUser">
+          <div id="user-name">Hi, {{currentUser.userName}}</div>
+          <button id="sign-out" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
+            Sign-out
+          </button>
+        </div>
+        <!-- <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
+          <i class="material-icons">account_circle</i>
+        </button> -->
         <div *ngIf="!currentUser">
-            <label>Enter Username</label>
-            <input type="text" #userNameInput>
-            <button type="click" (click)="createUser(userNameInput.value)">Submit</button>
-          </div>
+          <label>Enter Username</label>
+          <input type="text" #userNameInput>
+          <button type="click" (click)="createUser(userNameInput.value)">Submit</button>
+        </div>
       </div>
 
 
     </div>
   </header>
 
-  <main *ngIf="currentUser" class="mdl-layout__content mdl-color--grey-100">
+  <main class="mdl-layout__content mdl-color--grey-100">
     <div id="messages-card-container" class="mdl-cell mdl-cell--12-col mdl-grid">
 
       <!-- Messages container -->
@@ -34,7 +35,7 @@
         <div class="mdl-card__supporting-text mdl-color-text--grey-600">
           <div id="messages">
             <!-- Ngfor loop will be located here -->
-            <span *ngFor="let msg of messages" id="message-filler"><p>{{msg}}</p></span>
+            <span *ngFor="let message of messages" id="message-filler"><p>{{message.msg}} ({{message.username}})</p></span>
           </div>
 
           <form id="message-form" action="#">
@@ -45,16 +46,16 @@
             </div>
 
             <!-- Here comes to button -->
-            <a (click)="sendMsg(msgInput.value)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            <button type="click" (click)="sendMsg(msgInput.value)" class="mdl-button mdl-js-button mdl-button--raised  mdl-button--colored mdl-js-ripple-effect">
               Send
-            </a>
+            </button>
           </form>
 
           <form id="image-form" action="#">
             <input id="mediaCapture" type="file" accept="image/*" capture="camera">
-            <a id="submitImage" title="Add an image" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--amber-400 mdl-color-text--white">
+            <button type="click" id="submitImage" title="Add an image" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--amber-400 mdl-color-text--white">
               <i class="material-icons">image</i>
-            </a>
+            </button>
           </form>
         </div>
       </div>
