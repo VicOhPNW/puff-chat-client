@@ -60,9 +60,9 @@
 
             <span [class.float-right]="message.username != userName">({{message.username}})</span><br />
 
-            <div [class.me]="message.username == userName" [class.mdl-cell--3-offset]="message.username == userName"
-              class="chat-bubble">
-              <p>{{message.msg}}</p>
+            <div [class.me]="message.username == userName"
+              [class.mdl-cell--3-offset]="message.username == userName" class="chat-bubble">
+              <p class="message__element">{{message.msg}}</p>
             </div><br />
 
 

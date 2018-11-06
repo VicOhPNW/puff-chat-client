@@ -11,11 +11,12 @@ import * as firebase from "firebase";
   providers : [ChatService, AuthenticationService]
 })
 export class ChatComponent implements OnInit {
-  messages=[{username: "Chan Lee", msg: "hello"}];
+  messages=[{username: "Ethan Lee", msg: "Hello, welcome to the chatroom"}];
   msg : string;
   // currentUser: User;
   user;
   userName: string;
+  chatroomIndex: number = 0;
 
   constructor(private chatService : ChatService, public authService: AuthenticationService) {
     this.authService.user.subscribe(user => {
@@ -54,10 +55,12 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.chatService.selectChatroom(this.chatroomIndex);
+    
     this.chatService
     .getMessage()
     .subscribe(msg => {
-      this.msg = `${msg.username}: ${msg.msg}`;
+      this.messages.push({username: msg.username, msg: msg.msg});
     });
     
     this.chatService.requestPreviousMessages();
@@ -72,8 +75,8 @@ export class ChatComponent implements OnInit {
   }
 
   sendMsg(msg){
-    this.chatService.sendMessage(this.user.displayName, msg);
-    this.messages.push({username: this.user.displayName, msg: msg})
+    this.chatService.sendMessage(this.userName, msg);
+    // this.messages.push({username: this.currentUser.userName, msg: msg})
   }
 
   // createUser(name: string) {
