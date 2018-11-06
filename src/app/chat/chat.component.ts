@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-chat',
@@ -9,6 +10,7 @@ import { ChatService } from '../chat.service';
 })
 export class ChatComponent implements OnInit {
   msg : string;
+  currentUser: User;
 
   constructor(private chatService : ChatService) { }
 
@@ -16,11 +18,15 @@ export class ChatComponent implements OnInit {
     this.chatService
     .getMessage()
     .subscribe(msg => {
-      this.msg = "1st "+msg;
+      this.msg = `${msg.username}: ${msg.msg}`;
     });
   }
 
   sendMsg(msg){
-    this.chatService.sendMessage(msg);
+    this.chatService.sendMessage(this.currentUser.userName, msg);
+  }
+
+  createUser(name: string) {
+    this.currentUser = new User(name);
   }
 }
