@@ -1,7 +1,7 @@
   <!-- Header section containing logo -->
   <header class="mdl-layout__header mdl-color-text--white mdl-color--indigo-pink-700">
     <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
-      <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+      <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--12-col-desktop">
         <h3><i class="material-icons">message</i>puffChat</h3>
       </div>
 
@@ -39,7 +39,7 @@
     </div>
   </header>
 
-  <main class="mdl-layout__content mdl-color--grey-100">
+  <main *ngIf="currentUser" class="mdl-layout__content mdl-color--grey-100">
     <div id="messages-card-container" class="mdl-cell mdl-cell--12-col mdl-grid">
 
       <!-- Messages container -->
@@ -47,18 +47,28 @@
         <div class="mdl-card__supporting-text mdl-color-text--grey-600">
           <div id="messages">
             <!-- Ngfor loop will be located here -->
-            <span *ngFor="let message of messages" id="message-filler"><p>{{message.msg}} ({{message.username}})</p></span>
+            <div 
+            *ngFor="let message of messages" id="message-filler">
+
+            <span [class.float-right]="message.username != currentUser.userName">({{message.username}})</span><br />
+
+            <div [class.me]="message.username == currentUser.userName"
+              [class.mdl-cell--3-offset]="message.username == currentUser.userName" class="chat-bubble">
+              <p>{{message.msg}}</p>
+            </div><br />
+
+
+              
+            </div>
           </div>
 
           <form id="message-form" action="#">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="message"  #msgInput name="" value="">
-
-              <label class="mdl-textfield__label" for="message">Message...</label>
+              <input class="mdl-textfield__input" type="text" id="message"  #msgInput name="" value="" placeholder="Message...">
             </div>
 
             <!-- Here comes to button -->
-            <button type="click" (click)="sendMsg(msgInput.value)" class="mdl-button mdl-js-button mdl-button--raised  mdl-button--colored mdl-js-ripple-effect">
+            <button type="click" (click)="sendMsg(msgInput.value); msgInput.value='';" class="mdl-button mdl-js-button mdl-button--raised  mdl-button--colored mdl-js-ripple-effect">
               Send
             </button>
           </form>
