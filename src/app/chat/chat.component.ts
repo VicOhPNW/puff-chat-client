@@ -16,6 +16,7 @@ export class ChatComponent implements OnInit {
   // currentUser: User;
   user;
   userName: string;
+  chatroomIndex: number = 0;
 
   constructor(private chatService : ChatService, public authService: AuthenticationService) {
     this.authService.user.subscribe(user => {
@@ -50,10 +51,11 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.chatService.selectChatroom(this.chatroomIndex);
+    
     this.chatService
     .getMessage()
     .subscribe(msg => {
-      this.msg = `${msg.username}: ${msg.msg}`;
       this.messages.push({username: msg.username, msg: msg.msg});
     });
     
