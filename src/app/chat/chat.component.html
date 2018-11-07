@@ -5,7 +5,6 @@
       <h3><i class="material-icons">message</i>puffChat</h3>
     </div>
 
-
     <div id="user-container">
       <div *ngIf="user">
         <!-- <div id="user-name">Hi, {{currentUser.userName}}</div>
@@ -82,26 +81,38 @@
           </div>
 
 
-            <!-- Here comes to button -->
-            <button type="click" (click)="sendMsg(msgInput.value); msgInput.value='';" class="mdl-button mdl-js-button mdl-button--raised  mdl-button--colored mdl-js-ripple-effect">
-              Send
-            </button>
-          </form>
+          <!-- Here comes to button -->
+          <button type="click" (click)="sendMsg(msgInput.value); msgInput.value='';" class="mdl-button mdl-js-button mdl-button--raised  mdl-button--colored mdl-js-ripple-effect">
+            Send
+          </button>
+        </form>
 
-          <form id="image-form" action="#">
-              <!-- <input #imageInput id="mediaCapture" type="file" accept="image/*" capture="camera"> -->
-              <button (click)="sendImg(msgInput.value); msgInput.value ='' " type="click" id="submitImage" title="Add an image"
-                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--amber-400 mdl-color-text--white">
-                <i class="material-icons">image</i>
-              </button>
-            </form>
-            
+        <form id="image-form" action="#">
+          <!-- <input #imageInput id="mediaCapture" type="file" accept="image/*" capture="camera"> -->
+          <button (click)="sendImg(msgInput.value); msgInput.value ='' " type="click" id="submitImage" title="Add an image"
+            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--amber-400 mdl-color-text--white">
+            <i class="material-icons">image</i>
+          </button>
+        </form>
 
-    <div id="must-signin-snackbar" class="mdl-js-snackbar mdl-snackbar">
-      <div class="mdl-snackbar__text"></div>
-      <button class="mdl-snackbar__action" type="button"></button>
+        <!-- Emoji Menu -->
+        <div class="dropdown">
+          <img class="emoji-button" src="../../assets/emoji/PuffChat Smiley.png" (click)="emojiMenuShow()" alt="emoji button">
+          <div id="dropdown-content" class="hide">
+            <div class="emoji-select-container" *ngFor="let emoji of emojiIconList">
+              <img class="emoji-select-icon" (click)="sendEmoji(emoji.src)" src={{emoji.src}} alt="Emoji click icon">
+              <div class="emoji-text">
+                {{emoji.name}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="must-signin-snackbar" class="mdl-js-snackbar mdl-snackbar">
+          <div class="mdl-snackbar__text"></div>
+          <button class="mdl-snackbar__action" type="button"></button>
+        </div>
+      </div>
     </div>
-  </div>
-  </div>
   </div>
 </main>
