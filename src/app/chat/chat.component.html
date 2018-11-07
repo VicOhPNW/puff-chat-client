@@ -5,7 +5,6 @@
       <h3><i class="material-icons">message</i>puffChat</h3>
     </div>
 
-
     <div id="user-container">
       <div *ngIf="user">
         <!-- <div id="user-name">Hi, {{currentUser.userName}}</div>
@@ -75,9 +74,10 @@
 
         <form id="message-form" onkeypress="return event.keyCode != 13;" action="#">
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input (keydown.enter)="sendMsg(msgInput.value); msgInput.value =''" class="mdl-textfield__input" type="text" id="message" #msgInput name="" value="" placeholder="Message...">
+            <input (keydown.enter)="sendMsg(msgInput.value); msgInput.value =''" class="mdl-textfield__input" type="text"
+              id="message" #msgInput name="" value="" placeholder="Message...">
           </div>
-`
+          `
 
           <!-- Here comes to button -->
           <a type="click" (click)="sendMsg(msgInput.value); msgInput.value='';" class="mdl-button mdl-js-button mdl-button--raised  mdl-button--colored mdl-js-ripple-effect">
@@ -93,6 +93,23 @@
           </a>
         </form>
 
+        <!-- Emoji Menu -->
+        <div class="dropdown">
+          <img class="emoji-button" src="../../assets/emoji/PuffChat Smiley.png" (click)="emojiMenuShow()" alt="emoji button">
+          <div id="dropdown-content" class="hide">
+            <div class="emoji-select-container" *ngFor="let emoji of emojiIconList">
+              <img class="emoji-select-icon" (click)="sendEmoji(emoji.src)" src={{emoji.src}} alt="Emoji click icon">
+              <div class="emoji-text">
+                {{emoji.name}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="must-signin-snackbar" class="mdl-js-snackbar mdl-snackbar">
+          <div class="mdl-snackbar__text"></div>
+          <button class="mdl-snackbar__action" type="button"></button>
+        </div>
       </div>
     </div>
   </div>

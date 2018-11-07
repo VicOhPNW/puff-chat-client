@@ -19,6 +19,19 @@ export class ChatComponent implements OnInit {
   regex = /(THIS_IS_IMAGE)/i;
   chatroomIndex: number = 0;
 
+  emojiIconList: any[] = [
+    { src: '../../assets/emoji/PuffChat Smiley.png', name: 'Smiley'},
+    { src: '../../assets/emoji/PuffChat Smiley Wink.png', name: 'Wink'},
+    { src: '../../assets/emoji/PuffChat Smiley Squint.png', name: 'Squint'},
+    { src: '../../assets/emoji/PuffChat Smiley Squint Open.png', name: 'Squint Open'},
+    { src: '../../assets/emoji/PuffChat Smiley Open.png', name: 'Smiley Open'},
+    { src: '../../assets/emoji/PuffChat NongDamKi.png', name: 'NongDamKi!'},
+    { src: '../../assets/emoji/PuffChat Frown.png', name: 'Frown'},
+    { src: '../../assets/emoji/PuffChat Crying.png', name: 'Crying'},
+    { src: '../../assets/emoji/PuffChat Blushing.png', name: 'Blushing'},
+    { src: '../../assets/emoji/PuffChat Bemused.png', name: 'Bemused'}
+  ];
+
   constructor(private chatService : ChatService, public authService: AuthenticationService) {
     this.authService.user.subscribe(user => {
       console.log(user);
@@ -92,4 +105,14 @@ export class ChatComponent implements OnInit {
   // createUser(name: string) {
   //   this.currentUser = new User(name);
   // }
+
+  emojiMenuShow() {
+    document.getElementById("dropdown-content").classList.toggle("hide");
+    document.getElementById("dropdown-content").classList.toggle("emoji-grid");
+  }
+
+  sendEmoji(emojiSrc) {
+    this.sendImg(emojiSrc);
+    this.emojiMenuShow();
+  }
 }
