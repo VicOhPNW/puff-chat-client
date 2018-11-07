@@ -29,7 +29,8 @@ export class ChatComponent implements OnInit {
     { src: '../../assets/emoji/PuffChat Frown.png', name: 'Frown'},
     { src: '../../assets/emoji/PuffChat Crying.png', name: 'Crying'},
     { src: '../../assets/emoji/PuffChat Blushing.png', name: 'Blushing'},
-    { src: '../../assets/emoji/PuffChat Bemused.png', name: 'Bemused'}
+    { src: '../../assets/emoji/PuffChat Bemused.png', name: 'Bemused'},
+    { src: '../../assets/emoji/PuffChat Kenneth.png', name: 'Kenneth'}
   ];
 
   constructor(private chatService : ChatService, public authService: AuthenticationService) {
