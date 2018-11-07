@@ -213,7 +213,6 @@
     top: -1px;
     margin-right: 5px;
   }
-  
   .chat-bubble{
     float: right;
     min-width: 30px;
@@ -225,23 +224,23 @@
     color: white;
     display: inline;
   }
-
     .chat-bubble p {
         margin: 3px;
         padding: 6px;
         text-align: center;
     }
-
   .me { 
     float: left;
     background-color: whitesmoke;
     color: #0c0c0c;
   }
-
   .float-right {
       float: right;
   }
-
   p.message__element {
       font-size: 1.2rem;
+  }
+  img.img__element {
+    max-width: 300px;
+    height:auto;
   }

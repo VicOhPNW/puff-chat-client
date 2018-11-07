@@ -16,6 +16,7 @@ export class ChatComponent implements OnInit {
   // currentUser: User;
   user;
   userName: string;
+  regex = /(THIS_IS_IMAGE)/i;
 
   constructor(private chatService : ChatService, public authService: AuthenticationService) {
     this.authService.user.subscribe(user => {
@@ -71,6 +72,10 @@ export class ChatComponent implements OnInit {
   sendMsg(msg){
     this.chatService.sendMessage(this.userName, msg);
     // this.messages.push({username: this.currentUser.userName, msg: msg})
+  }
+
+  sendImg(url) {
+    this.sendMsg(url+"THIS_IS_IMAGE");
   }
 
   // createUser(name: string) {

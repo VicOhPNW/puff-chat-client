@@ -54,7 +54,12 @@
 
             <div [class.me]="message.username == userName"
               [class.mdl-cell--3-offset]="message.username == userName" class="chat-bubble">
-              <p class="message__element">{{message.msg}}</p>
+              <div *ngIf="regex.test(message.msg); else textMessage">
+                <img class="img__element" [src]="message.msg.replace('THIS_IS_IMAGE', '')">
+              </div>
+              <ng-template #textMessage>
+                  <p class="message__element">{{message.msg}}</p>
+              </ng-template>
             </div><br />
 
 
@@ -74,8 +79,10 @@
           </form>
 
           <form id="image-form" action="#">
-            <input id="mediaCapture" type="file" accept="image/*" capture="camera">
-            <button type="click" id="submitImage" title="Add an image" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--amber-400 mdl-color-text--white">
+            <!-- <input #imageInput id="mediaCapture" type="file" accept="image/*" capture="camera"> -->
+            <button 
+            (click)="sendImg(msgInput.value); msgInput.value ='' "
+            type="click" id="submitImage" title="Add an image" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--amber-400 mdl-color-text--white">
               <i class="material-icons">image</i>
             </button>
           </form>
