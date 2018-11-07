@@ -3,6 +3,7 @@ import { ChatService } from '../chat.service';
 import { User } from '../models/user.model';
 import { AuthenticationService } from '../authentication.service';
 import * as firebase from "firebase";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -32,8 +33,8 @@ export class ChatComponent implements OnInit {
     { src: '../../assets/emoji/PuffChat Bemused.png', name: 'Bemused'},
     { src: '../../assets/emoji/PuffChat Kenneth.png', name: 'Kenneth'}
   ];
-
-  constructor(private chatService : ChatService, public authService: AuthenticationService) {
+  
+  constructor(private chatService : ChatService, public authService: AuthenticationService, private router: Router) {
     this.authService.user.subscribe(user => {
       console.log(user);
       if (user == null) {
@@ -59,6 +60,10 @@ export class ChatComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+    if (confirm('Successfully logged out')) {
+      this.router.navigate([""]);
+    }
+    location.reload();
   }
 
   updateDisplayName(newName) {
