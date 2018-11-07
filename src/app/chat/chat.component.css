@@ -127,7 +127,7 @@
   #message-form .mdl-textfield {
     width: calc(100% - 100px);
   }
-  #message-form button, #image-form button {
+  #message-form a, #image-form a {
     width: 30px;
     margin: 15px 0 0 10px;
     padding: 0;
@@ -209,14 +209,13 @@
   .mdl-textfield--floating-label.is-focused .mdl-textfield__label {
     color: #e388d9;
   }
-  .mdl-button .material-icons {
+  .mdl-a .material-icons {
     top: -1px;
     margin-right: 5px;
   }
   .chat-bubble{
     float: right;
     min-width: 30px;
-    width: auto;
     padding: 0;
     background-color: #df43cc;
     border-radius: 10px;

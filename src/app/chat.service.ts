@@ -7,8 +7,8 @@ export class ChatService {
 
   constructor(private socket: Socket) { }
 
-  sendMessage(userName: string, msg: string){
-    this.socket.emit("message", {username: userName, msg: msg});
+  sendMessage(userName: string, msg: string, chatroomIndex: number){
+    this.socket.emit("message", {username: userName, msg: msg, chatroomIndex: chatroomIndex});
   }
   
   getMessage() {
@@ -17,8 +17,8 @@ export class ChatService {
       .map( data => data);
   }
 
-  requestPreviousMessages() {
-    this.socket.emit("previousMessages", "request");
+  requestPreviousMessages(chatroomIndex) {
+    this.socket.emit("previousMessages", chatroomIndex);
   }
 
   getPreviousMessages() {
