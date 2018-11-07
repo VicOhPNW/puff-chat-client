@@ -84,6 +84,12 @@ export class ChatComponent implements OnInit {
     this.sendMsg(url+"THIS_IS_IMAGE");
   }
 
+  preventDefault () {window.addEventListener('beforeunload', function (e) {
+      e.preventDefault();
+      e.returnValue = '';
+    })
+  }
+
   // createUser(name: string) {
   //   this.currentUser = new User(name);
   // }
