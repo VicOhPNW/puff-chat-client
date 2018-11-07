@@ -19,7 +19,7 @@
         <input #newDisplayName type="text" required>
         <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white" (click)="updateDisplayName(newDisplayName.value)">Update
           Name</a>
-        <a (click)="logout()">Log out</a>
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white" (click)="logout()">Log out</a>
       </div>
       <!-- <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
           <i class="material-icons">account_circle</i>
@@ -28,14 +28,14 @@
         <!-- <label>Enter Username</label>
           <input type="text" #userNameInput>
           <button type="click" (click)="createUser(userNameInput.value)">Submit</button> -->
-        <div class="sign-in-container">
+        <div class="log-in-container">
           <label for="email">Email: </label>
           <input #email type="text" required>
           <label for="password">Password: </label>
           <input #password type="password" required>
           <button (click)="login(email.value, password.value)">Log in</button>
         </div>
-        <div class="log-in-container">
+        <div class="sign-up-container">
           <label for="newEmail">Email: </label>
           <input #newEmail type="text" required>
           <label for="newPW">Password: </label>

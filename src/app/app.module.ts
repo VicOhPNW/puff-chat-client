@@ -8,6 +8,9 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { masterFirebaseConfig } from './api-keys';
+import { HomeComponent } from './home/home.component';
+
+import { routing } from './app.routing';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -22,7 +25,8 @@ const config: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
 @NgModule({
   declarations: [
     AppComponent,
-    ChatComponent
+    ChatComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +34,7 @@ const config: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    routing
   ],
   providers: [],
   bootstrap: [AppComponent]
