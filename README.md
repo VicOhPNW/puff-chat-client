@@ -8,7 +8,7 @@ _PuffChat_ is a clean and simple chatroom service.
 
 ## *Specifications*
 | User Stories |
-|-------------|-------------|
+|-------------|
 |User can register an authenticated account.|
 |User can log-in with email and passowrd.|
 |User can create and update a display name.|
@@ -35,7 +35,7 @@ It's best to setup the server-side of this program first. You can find that [her
 1. To get more help on the Angular CLI:
     * use `ng help`
     * or check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-    
+
 2. Express information and documentation can be found at [exressjs.com](https://expressjs.com/).
 3. Socket.io information and documentation can be found at [socket.io](https://socket.io/).
 
