@@ -56,28 +56,27 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.chatService.selectChatroom(this.chatroomIndex);
-
     this.chatService
     .getMessage()
     .subscribe(msg => {
-      this.messages.push({username: msg.username, msg: msg.msg, timestamp: msg.timestamp });
+      if (msg.chatroomIndex === this.chatroomIndex) {
+        this.messages.push({username: msg.username, msg: msg.msg, timestamp: msg.timestamp });
+      }
     });
     
-    this.chatService.requestPreviousMessages();
+    this.chatService.requestPreviousMessages(this.chatroomIndex);
 
     this.chatService
     .getPreviousMessages()
     .subscribe(previousMessages => {
       Object.keys(previousMessages).forEach(key => {
         this.messages.push(previousMessages[key]);
-      });
+      }); 
     });
   }
 
   sendMsg(msg){
-    this.chatService.sendMessage(this.userName, msg);
-    // this.messages.push({username: this.currentUser.userName, msg: msg})
+    this.chatService.sendMessage(this.userName, msg, this.chatroomIndex);
   }
 
   sendImg(url) {
